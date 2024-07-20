@@ -1,0 +1,84 @@
+@import 'normalize.css';
+
+@font-face {
+    font-family: 'TikTokFont';
+    src: url('../../assets/fonts/TikTokFont-Bold.woff2'), url('../../assets/fonts/TikTokFont-Semibold.woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TikTokFont';
+    src: url('../../assets/fonts/TikTokFont-Regular.woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TikTokDisplayFont';
+    src: url('../../assets/fonts/TikTokDisplayFont-Bold.woff2'),
+        url('../../assets/fonts/TikTokDisplayFont-Semibold.woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+}
+
+body {
+    font-family: 'TikTokFont', 'TikTokDisplayFont', 'Segoe UI';
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-rendering: optimizeSpeed;
+}
+
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+span,
+button {
+    color: var(--default-font-color);
+}
+
+button,
+input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-family: 'TikTokFont', 'TikTokDisplayFont', 'Segoe UI';
+}
+
+button {
+    display: flex;
+    align-items: center;
+}
+
+a[href] {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+svg {
+    fill: rgba(22, 24, 35, 0.34);
+}
+
+#root {
+    --default-font-color: #333;
+    --sliderbar-max-width: 240px;
+    --white: #fff;
+    --svg-color: rgba(22, 24, 35, 0.34);
+    --svg-color_2: rgba(22, 24, 35, 0.75);
+    --header-height: 60px;
+}
