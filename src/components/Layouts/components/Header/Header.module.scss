@@ -1,7 +1,7 @@
 .wrapper {
     //Dat bien
     --header-shadow: rgba(0, 0, 0, 0.12) 0px 1px 1px;
-    --input-max-width: 500px;
+    --search-max-width: 500px;
     --input-height: 46px;
     --input-border-radius: 92px;
     --search-background-color: rgba(22, 24, 35, 0.06);
@@ -26,12 +26,18 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
 
 .logo,
-.search,
-.action {
+.tippy-wrapper,
+.actions {
     flex: 1;
+}
+
+.tippy-wrapper {
+    max-width: var(--search-max-width);
+    width: 100%;
 }
 
 .logo {
@@ -47,7 +53,6 @@
 }
 
 .search-box {
-    max-width: var(--input-max-width);
     width: 100%;
     height: var(--input-height);
     border-radius: var(--input-border-radius);
@@ -76,6 +81,10 @@
             color: var(--svg-color_2);
         }
     }
+
+    input:not(:placeholder-shown) ~ .clear-input {
+        display: block;
+    }
 }
 
 .clear-input svg,
@@ -83,14 +92,22 @@
     font-size: 14px;
     margin: 0 12px;
     color: var(--svg-color);
+    cursor: pointer;
 }
 
 .clear-input {
-    // display: none;
+    display: none;
 }
 
 .loading {
     display: none;
+}
+
+span.line {
+    width: 1px;
+    height: 28px;
+    margin: auto 0;
+    background-color: rgba(22, 24, 35, 0.12);
 }
 
 .search-btn {
@@ -109,9 +126,64 @@
     }
 }
 
-span.line {
-    width: 1px;
-    height: 28px;
-    margin: auto 0;
-    background-color: rgba(22, 24, 35, 0.12);
+#tippy-2 {
+    width: 100%;
+}
+
+.search-result {
+    width: 500px;
+}
+
+.sug-item,
+.accounts-item {
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+        cursor: pointer;
+    }
+}
+
+.search-title {
+    padding: 5px 12px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+    color: rgba(22, 24, 35, 0.5);
+}
+
+.sug-item {
+    padding: 9px 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    svg {
+        font-size: 15px;
+        margin-right: 8px;
+    }
+
+    span {
+        font-size: 16px;
+        line-height: 21px;
+        font-weight: 500;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+.actions {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    height: 100%;
+}
+
+.more-btn {
+    cursor: pointer;
+}
+
+.more-icon {
+    margin-left: 16px;
+    padding: 0 4px;
+    font-size: 20px;
+    font-weight: 400;
 }
