@@ -1,21 +1,33 @@
 import { Fragment } from 'react';
-import Tippy from '@tippyjs/react/headless';
+import HeadlessTippy from '@tippyjs/react/headless';
 import React, { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisVertical, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisVertical, faMagnifyingGlass, faPlus, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+// import TippyCustom from '../TippyCustom';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 import styles from './Header.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import Button from '../Button';
 import AccountItem from '~/components/AccountItem';
-import Menu from '~/components/Popper/Menu';
-import images from '~/assets/images';
 import SEARCH_RESULT from './data/search_result';
+import Menu from '~/components/Popper/Menu';
 import MENU_ITEMS from './data/more_menu';
-const cx = classNames.bind(styles);
+import { InboxSvg, LogoSvg, MessagesSvg } from '~/assets/images';
 
+const cx = classNames.bind(styles);
+const currentUser = {
+    name: 'Nguyen Van A',
+    username: 'nguyenvana',
+    img_src: 'https://cdn.tuoitre.vn/thumb_w/730/2022/10/27/son-tung-4-1666838826176719239917.jpeg',
+    checked: true,
+    part: '@nguyenvana',
+};
+
+// const currentUser = false;
 function Header() {
     //visible search-result
     const [isFocused, setIsFocused] = useState(false);
@@ -46,18 +58,29 @@ function Header() {
         setInputValue('');
     };
 
+    //Handle Logic
+    const handleMenuChange = (option) => {
+        switch (option.type) {
+            case 'language':
+                console.log(`Ngôn ngữ được chuyển thành ${option.title}`);
+                break;
+            default:
+        }
+    };
+
     return (
         <Fragment>
             <header className={cx('wrapper')}>
                 <div className={cx('inner')}>
                     {/* Logo TikTok */}
                     <div className={cx('logo')}>
-                        <img src={images.logo} alt="TikTok" />
+                        {/* <img src={images.logo} alt="TikTok" /> */}
+                        <LogoSvg />
                     </div>
 
                     {/* Search box */}
                     <div className={cx('tippy-wrapper')}>
-                        <Tippy
+                        <HeadlessTippy
                             visible={isFocused}
                             // visible={true}
                             interactive={true}
@@ -108,25 +131,56 @@ function Header() {
                                     </button>
                                 </div>
                             </div>
-                        </Tippy>
+                        </HeadlessTippy>
                     </div>
 
-                    {/* Sig up & Log in box */}
                     <div className={cx('actions')}>
-                        <Button text _blank href={'https://www.tiktok.com/'}>
-                            Upload
-                        </Button>
-
-                        <Button primary to="/login">
-                            Log in
-                        </Button>
-
-                        <Menu items={MENU_ITEMS}>
-                            <div className={cx('more-btn')}>
-                                <FontAwesomeIcon className={cx('more-icon')} icon={faEllipsisVertical} />
+                        {currentUser ? (
+                            <div className={cx('actions-wrapper')}>
+                                <Button outline medium left_icon={<FontAwesomeIcon icon={faPlus} />}>
+                                    Upload
+                                </Button>
+                                <Tippy content="Messages">
+                                    <Button
+                                        href="https://www.tiktok.com/"
+                                        _blank
+                                        className={cx('messages')}
+                                        style_2
+                                        tippy='content: "Hello"'
+                                    >
+                                        <MessagesSvg />
+                                    </Button>
+                                </Tippy>
+                                <Tippy content="Inbox">
+                                    <Button className={cx('inbox')} style_2 sup="2">
+                                        <InboxSvg />
+                                    </Button>
+                                </Tippy>
                             </div>
+                        ) : (
+                            <div className={cx('actions-wrapper')}>
+                                <Button medium text _blank href={'https://www.tiktok.com/'}>
+                                    Upload
+                                </Button>
+
+                                <Button medium primary to="/login">
+                                    Log in
+                                </Button>
+                            </div>
+                        )}
+                        <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
+                            {currentUser ? (
+                                <button className={cx('avatar')}>
+                                    <img src={currentUser.img_src} alt={currentUser.name} />
+                                </button>
+                            ) : (
+                                <div className={cx('more-btn')}>
+                                    <FontAwesomeIcon className={cx('more-icon')} icon={faEllipsisVertical} />
+                                </div>
+                            )}
                         </Menu>
                     </div>
+                    {/* Sig up & Log in box */}
                 </div>
             </header>
         </Fragment>
