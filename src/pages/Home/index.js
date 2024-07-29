@@ -1,5 +1,6 @@
+import images from '~/assets/imgs';
 function Home() {
-    return <h2>Home Page</h2>;
+    return <img src={images.noImage} alt="hello" />;
 }
 
 export default Home;

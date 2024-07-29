@@ -1,4 +1,12 @@
-const { faEarthAsia, faCircleQuestion, faGhost } = require('@fortawesome/free-solid-svg-icons');
+const {
+    faEarthAsia,
+    faCircleQuestion,
+    faGhost,
+    faUser,
+    faCoins,
+    faGear,
+    faArrowRightFromBracket,
+} = require('@fortawesome/free-solid-svg-icons');
 const { FontAwesomeIcon } = require('@fortawesome/react-fontawesome');
 
 const MENU_ITEMS = [
@@ -551,4 +559,25 @@ const MENU_ITEMS = [
     },
 ];
 
-export default MENU_ITEMS;
+const USER_MENU = [
+    {
+        icon: <FontAwesomeIcon icon={faUser} />,
+        title: 'View profile',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faCoins} />,
+        title: 'Get Coins',
+    },
+    ...MENU_ITEMS,
+    {
+        icon: <FontAwesomeIcon icon={faGear} />,
+        title: 'Setting',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
+        title: 'Log out',
+        separate: true,
+    },
+];
+
+export { MENU_ITEMS, USER_MENU };

@@ -40,6 +40,7 @@ function Menu({ items, children, onChange = defaultFn }) {
             interactive={true}
             // visible
             delay={[0, 500]}
+            offset={[12, 12]}
             placement="bottom-end"
             onHide={() => setHistory((prev) => prev.slice(0, 1))}
             render={(attrs) => (

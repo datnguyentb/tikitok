@@ -28,25 +28,42 @@
     box-sizing: border-box;
 }
 
+#root {
+    --default-font-color: #333;
+    --sliderbar-max-width: 240px;
+    --white: #fff;
+    --svg-color: rgba(22, 24, 35, 0.34);
+    --svg-color_2: rgba(22, 24, 35, 0.75);
+    --header-height: 60px;
+    --primary-color: rgb(254, 44, 85);
+    --button-component-style-2-width: 32px;
+}
+
 html {
 }
 
 body {
+    --text-color: #161823;
     font-family: 'TikTokFont', 'TikTokDisplayFont', 'Segoe UI';
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
+    color: var(--text-color);
 }
 
 a,
 p,
+span,
+button {
+    color: var(--text-color);
+    font-weight: normal;
+}
+
 h1,
 h2,
 h3,
-h4,
-span,
-button {
-    color: var(--default-font-color);
+h4 {
+    font-weight: 600;
 }
 
 button,
@@ -74,13 +91,17 @@ svg {
     fill: rgba(22, 24, 35, 0.34);
 }
 
-#root {
-    --default-font-color: #333;
-    --sliderbar-max-width: 240px;
-    --white: #fff;
-    --svg-color: rgba(22, 24, 35, 0.34);
-    --svg-color_2: rgba(22, 24, 35, 0.75);
-    --header-height: 60px;
-    --primary-color: rgb(254, 44, 85);
-    --button-component-style-2-width: 32px;
+//custom tippy tooltip
+body .tippy-box {
+    height: 38px;
+    border-radius: 8px;
+    background-color: rgba(84, 84, 84, 0.92);
+    line-height: 2.2rem;
+    display: flex;
+    align-items: center;
+}
+
+body .tippy-arrow {
+    color: rgba(84, 84, 84, 0.92);
+    margin-top: -1px;
 }

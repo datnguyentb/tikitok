@@ -5,18 +5,19 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical, faMagnifyingGlass, faPlus, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
-// import TippyCustom from '../TippyCustom';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
 import styles from './Header.module.scss';
+import { MENU_ITEMS, USER_MENU } from './data/more_menu';
+import { InboxSvg, LogoSvg, MessagesSvg } from '~/assets/svgs';
+// import { NoImage } from '~/assets/imgs';
+import Image from '~/components/Image';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import Button from '../Button';
 import AccountItem from '~/components/AccountItem';
 import SEARCH_RESULT from './data/search_result';
 import Menu from '~/components/Popper/Menu';
-import MENU_ITEMS from './data/more_menu';
-import { InboxSvg, LogoSvg, MessagesSvg } from '~/assets/images';
 
 const cx = classNames.bind(styles);
 const currentUser = {
@@ -74,7 +75,6 @@ function Header() {
                 <div className={cx('inner')}>
                     {/* Logo TikTok */}
                     <div className={cx('logo')}>
-                        {/* <img src={images.logo} alt="TikTok" /> */}
                         <LogoSvg />
                     </div>
 
@@ -168,10 +168,10 @@ function Header() {
                                 </Button>
                             </div>
                         )}
-                        <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
+                        <Menu items={currentUser ? USER_MENU : MENU_ITEMS} onChange={handleMenuChange}>
                             {currentUser ? (
                                 <button className={cx('avatar')}>
-                                    <img src={currentUser.img_src} alt={currentUser.name} />
+                                    <Image src={currentUser.img_src} alt={currentUser.name} />
                                 </button>
                             ) : (
                                 <div className={cx('more-btn')}>
