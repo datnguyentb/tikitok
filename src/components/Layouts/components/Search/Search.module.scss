@@ -1,0 +1,129 @@
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-box {
+    width: 100%;
+    height: var(--input-height);
+    border-radius: var(--input-border-radius);
+    background-color: var(--search-background-color);
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 16px;
+    border: 1px solid transparent;
+
+    input {
+        flex: 1;
+        font-size: 16px;
+        color: rgb(22, 24, 35);
+        appearance: textfield;
+        margin: 5px 0;
+        caret-color: rgb(254, 44, 85);
+    }
+    &:focus-within {
+        border-color: rgba(22, 24, 35, 0.2);
+    }
+
+    input:not(:placeholder-shown) ~ .search-btn {
+        cursor: pointer;
+        svg {
+            color: var(--svg-color_2);
+        }
+    }
+
+    input:not(:placeholder-shown) ~ .clear-input {
+        display: block;
+    }
+}
+
+.clear-input svg,
+.loading svg {
+    font-size: 14px;
+    margin: 0 12px;
+    color: var(--svg-color);
+    cursor: pointer;
+}
+
+.clear-input {
+    display: none;
+}
+
+.loading {
+    display: none;
+}
+
+span.line {
+    width: 1px;
+    height: 28px;
+    margin: auto 0;
+    background-color: rgba(22, 24, 35, 0.12);
+}
+
+.search-btn {
+    padding: 11px 18.5px 11px 14.5px;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    cursor: no-drop;
+    svg {
+        font-size: 19px;
+        color: var(--svg-color);
+    }
+
+    &:hover {
+        background: var(--search-btn-hover);
+    }
+}
+
+#tippy-2 {
+    width: 100%;
+}
+
+.search-result {
+    width: 500px;
+}
+
+.sug-item,
+.trend-item,
+.accounts-item {
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+        cursor: pointer;
+    }
+}
+
+.search-title {
+    padding: 5px 12px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+    color: rgba(22, 24, 35, 0.5);
+}
+
+.sug-item,
+.trend-item {
+    padding: 9px 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    svg {
+        font-size: 15px;
+        margin-right: 8px;
+    }
+
+    span {
+        font-size: 16px;
+        line-height: 21px;
+        font-weight: 500;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+.trend-item {
+    color: var(--primary-color);
+}
