@@ -78,7 +78,16 @@ const SEARCH_RESULT = [
             part: '@kimvank',
         },
     ],
-    ['Phở', 'Sushi', 'Pizza', 'Tacos', 'Curry', 'Bánh mì', 'Paella', 'Kimchi'],
+    [
+        'em bé hài hước',
+        'Trend 2k12 Bây Giờ Kiểu',
+        'Vụ Xe Ô Tô Va Chạm Với Tàu Hỏa Đồng Nai',
+        'Ngày 1 Tháng 8 Là Ngày Gì',
+        'bé mật ong cười giọng dê',
+        'Suni Hạ Linh Gây Tranh Cãi Khi Quốc Tang',
+        'lâm quỳnh là 1 hệ tư tưởng',
+        'Ai Là Đom Đóm Giơ Tay Lên CapCut',
+    ],
 ];
 
 export default SEARCH_RESULT;

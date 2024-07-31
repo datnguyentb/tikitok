@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import HeadlessTippy from '@tippyjs/react/headless';
@@ -9,6 +9,7 @@ import styles from './Search.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import SEARCH_RESULT from '../Header/data/search_result';
+import { useDebounce } from '~/hooks';
 
 const cx = classNames.bind(styles);
 
@@ -16,12 +17,32 @@ function Search() {
     const [isFocused, setIsFocused] = useState(false);
     const [searchResult, setSearchResult] = useState(SEARCH_RESULT);
     const [inputValue, setInputValue] = useState('');
+    const [loading, setLoading] = useState(false);
     const inputRef = useRef(null);
+
+    const debounced = useDebounce(inputValue, 500);
+    //call API
+    useEffect(() => {
+        if (debounced.trim() !== '') {
+            setLoading(true);
+            fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
+                .then((res) => res.json())
+                .then((res) => {
+                    setSearchResult(res.data);
+                    setLoading(false);
+                })
+                .catch(() => {
+                    setLoading(false);
+                });
+        } else {
+            setSearchResult([]);
+        }
+    }, [debounced]);
 
     //Clear-btn input value
     const handleButtonClick = () => {
         setInputValue('');
-        // setSearchResult([]);
+        setSearchResult([]);
         inputRef.current.focus();
     };
 
@@ -37,24 +58,28 @@ function Search() {
             render={(attrs) => (
                 <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                     <PopperWrapper>
-                        {inputValue ? (
+                        {inputValue.trim() && searchResult.length !== 0 ? (
                             <div>
                                 <ul className={cx('sug-result-items')}>
-                                    {searchResult[1].map((sug, index) => {
-                                        return (
-                                            <li className={cx('sug-item')} key={index}>
-                                                <FontAwesomeIcon icon={faMagnifyingGlass} />
-                                                <span>{sug}</span>
-                                            </li>
-                                        );
+                                    {SEARCH_RESULT[1].map((sug, index) => {
+                                        if (index < 5) {
+                                            return (
+                                                <li className={cx('sug-item')} key={index}>
+                                                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                                                    <span>{sug}</span>
+                                                </li>
+                                            );
+                                        } else {
+                                            return '';
+                                        }
                                     })}
                                 </ul>
                                 <h4 className={cx('search-title')}>Accounts</h4>
                                 <ul className={cx('list-accounts')}>
-                                    {searchResult[0].map((user, index) => {
+                                    {searchResult.map((user, index) => {
                                         return (
-                                            <li className={cx('accounts-item')} key={index}>
-                                                <AccountItem user={user}></AccountItem>
+                                            <li className={cx('accounts-item')} key={user.id || index}>
+                                                <AccountItem data={user}></AccountItem>
                                             </li>
                                         );
                                     })}
@@ -64,7 +89,7 @@ function Search() {
                             <div>
                                 <h4 className={cx('search-title')}>You may like</h4>
                                 <ul className={cx('trend-result-items')}>
-                                    {searchResult[1].map((sug, index) => {
+                                    {SEARCH_RESULT[1].map((sug, index) => {
                                         return (
                                             <li className={cx('trend-item')} key={index}>
                                                 <FontAwesomeIcon icon={faArrowTrendUp} />
@@ -88,12 +113,16 @@ function Search() {
                         ref={inputRef}
                         placeholder="Search accounts and videos"
                     />
-                    <button onClick={handleButtonClick} className={cx('clear-input')}>
-                        <FontAwesomeIcon icon={faCircleXmark} />
-                    </button>
-                    <button className={cx('loading')}>
-                        <FontAwesomeIcon icon={faSpinner} />
-                    </button>
+                    {!loading && (
+                        <button onClick={handleButtonClick} className={cx('clear-input')}>
+                            <FontAwesomeIcon icon={faCircleXmark} />
+                        </button>
+                    )}
+                    {loading && (
+                        <button className={cx('loading')}>
+                            <FontAwesomeIcon icon={faSpinner} />
+                        </button>
+                    )}
                     <span className={cx('line')}></span>
                     <button className={cx('search-btn')}>
                         <FontAwesomeIcon icon={faMagnifyingGlass} />

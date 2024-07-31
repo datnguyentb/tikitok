@@ -15,6 +15,7 @@ import Image from '~/components/Image';
 import Button from '../Button';
 import Menu from '~/components/Popper/Menu';
 import Search from '../Search';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 const currentUser = {
@@ -42,9 +43,9 @@ function Header() {
             <header className={cx('wrapper')}>
                 <div className={cx('inner')}>
                     {/* Logo TikTok */}
-                    <div className={cx('logo')}>
+                    <Link to="/" className={cx('logo')}>
                         <LogoSvg />
-                    </div>
+                    </Link>
 
                     {/* Search box */}
                     <div className={cx('search-wrapper')}>
