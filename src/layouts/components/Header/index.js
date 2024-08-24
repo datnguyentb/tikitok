@@ -6,6 +6,7 @@ import { faEllipsisVertical, faPlus } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
+import config from '~/config';
 import styles from './Header.module.scss';
 import { MENU_ITEMS, USER_MENU } from './data/more_menu';
 import { InboxSvg, LogoSvg, MessagesSvg } from '~/assets/svgs';
@@ -43,7 +44,7 @@ function Header() {
             <header className={cx('wrapper')}>
                 <div className={cx('inner')}>
                     {/* Logo TikTok */}
-                    <Link to="/" className={cx('logo')}>
+                    <Link to={config.routes.home} className={cx('logo')}>
                         <LogoSvg />
                     </Link>
 

@@ -5,6 +5,7 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import { faArrowTrendUp, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
+import * as searchServices from '~/services/searchService';
 import styles from './Search.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
@@ -24,16 +25,14 @@ function Search() {
     //call API
     useEffect(() => {
         if (debounced.trim() !== '') {
-            setLoading(true);
-            fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
-                .then((res) => res.json())
-                .then((res) => {
-                    setSearchResult(res.data);
-                    setLoading(false);
-                })
-                .catch(() => {
-                    setLoading(false);
-                });
+            const fetchApi = async () => {
+                setLoading(true);
+                const result = await searchServices.search(debounced);
+                setSearchResult(result);
+                setLoading(false);
+            };
+
+            fetchApi();
         } else {
             setSearchResult([]);
         }
@@ -44,6 +43,13 @@ function Search() {
         setInputValue('');
         setSearchResult([]);
         inputRef.current.focus();
+    };
+
+    const handleChange = (e) => {
+        const searchValue = e.target.value;
+        if (!searchValue.startsWith(' ')) {
+            setInputValue(searchValue);
+        }
     };
 
     const handleHideResult = () => {
@@ -108,7 +114,7 @@ function Search() {
                 <div className={cx('search-box')}>
                     <input
                         value={inputValue}
-                        onChange={(e) => setInputValue(e.target.value)}
+                        onChange={handleChange}
                         onFocus={() => setIsFocused(true)}
                         ref={inputRef}
                         placeholder="Search accounts and videos"
@@ -124,7 +130,7 @@ function Search() {
                         </button>
                     )}
                     <span className={cx('line')}></span>
-                    <button className={cx('search-btn')}>
+                    <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
                     </button>
                 </div>
