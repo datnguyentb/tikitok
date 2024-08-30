@@ -1,0 +1,43 @@
+.wrapper {
+}
+
+.menu-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 200ms ease-in-out;
+
+    &:hover {
+        background: rgba(22, 24, 35, 0.03);
+    }
+
+    svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    &.active {
+        svg {
+            fill: var(--primary-color);
+        }
+
+        span {
+            // color: red;
+            color: var(--primary-color);
+        }
+    }
+}
+
+span.title {
+    font-family: 'TikTokFont', 'TikTokDisplayFont', 'Segoe UI';
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    margin-left: 8px;
+}
