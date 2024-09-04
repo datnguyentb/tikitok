@@ -115,7 +115,7 @@ Button.propTypes = {
     right: PropTypes.bool,
     rounded: PropTypes.bool,
     medium: PropTypes.bool,
-    large: PropTypes.string,
+    large: PropTypes.bool,
     left_icon: PropTypes.node,
     right_icon: PropTypes.node,
     className: PropTypes.string,

@@ -61,17 +61,18 @@ function Header() {
                                 </Button>
                                 <Tippy content="Messages">
                                     <Button
-                                        href="https://www.tiktok.com/"
+                                        to="/messages"
                                         _blank
                                         className={cx('messages')}
                                         style_2
                                         tippy='content: "Hello"'
+                                        sup="10"
                                     >
                                         <MessagesSvg />
                                     </Button>
                                 </Tippy>
                                 <Tippy content="Inbox">
-                                    <Button className={cx('inbox')} style_2 sup="2">
+                                    <Button className={cx('inbox')} style_2 sup="3">
                                         <InboxSvg />
                                     </Button>
                                 </Tippy>

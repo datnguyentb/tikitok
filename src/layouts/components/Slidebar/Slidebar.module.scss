@@ -1,15 +1,48 @@
 .wrapper {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
     width: var(--sliderbar-max-width);
-    height: 5000px;
+    height: 100%;
+    max-height: calc(100vh - var(--header-height));
+    overflow-y: scroll; /* Hiển thị thanh cuộn dọc nếu nội dung vượt quá chiều cao */
+    overflow-x: hidden;
     background-color: var(--white);
 }
 
 .inner {
-    padding: 20px 0 26px 8px;
+    padding: 20px 0px 26px 8px;
+}
+
+.frame-container {
+    padding: 20px 8px 24px 8px;
+    position: relative;
+    &::before {
+        content: '';
+        position: absolute;
+        left: 8px;
+        right: 8px;
+        top: 0px;
+        height: 1px;
+        background: rgba(22, 24, 35, 0.12);
+        transform: scaleY(0.5);
+    }
+
+    p {
+        color: rgba(22, 24, 35, 0.5);
+        font-family: TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+        font-size: 16px;
+        line-height: 21px;
+    }
+
+    .login-btn {
+        margin-top: 20px;
+    }
 }
 
 .footer {
-    padding: 16px 0 0 8px;
+    padding: 16px 8px 0 8px;
+    position: relative;
     li {
         font-size: 15px;
     }
@@ -22,4 +55,46 @@
     li + li {
         margin-top: 15px;
     }
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 8px;
+        right: 8px;
+        top: 0px;
+        height: 1px;
+        background: rgba(22, 24, 35, 0.12);
+        transform: scaleY(0.5);
+    }
+}
+
+.footer-banner {
+    // padding-right: 8px;
+    display: block;
+    height: auto;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.banner-wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.content-banner {
+    position: absolute;
+    color: rgb(255, 245, 201);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 56px;
 }

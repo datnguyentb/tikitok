@@ -5,6 +5,8 @@ const routes = {
     login: '/login',
     upload: '/upload',
     live: '/live',
+    explore: '/explore',
+    messages: '/messages',
 };
 
 export default routes;
