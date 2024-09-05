@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/tiktok/static/css/main.fde19faa.css",
+    "main.js": "/tiktok/static/js/main.94bd2a60.js",
+    "static/js/453.ed3810f9.chunk.js": "/tiktok/static/js/453.ed3810f9.chunk.js",
+    "static/media/TikTokDisplayFont-Bold.woff2": "/tiktok/static/media/TikTokDisplayFont-Bold.b191c0620e8c9617ea10.woff2",
+    "static/media/TikTokFont-Bold.woff2": "/tiktok/static/media/TikTokFont-Bold.145f211a356fce76072d.woff2",
+    "static/media/TikTokDisplayFont-Semibold.woff2": "/tiktok/static/media/TikTokDisplayFont-Semibold.6d304bc13296116e94fd.woff2",
+    "static/media/TikTokFont-Semibold.woff2": "/tiktok/static/media/TikTokFont-Semibold.0a3262809350126554ad.woff2",
+    "static/media/TikTokFont-Regular.woff2": "/tiktok/static/media/TikTokFont-Regular.0ca75da985ad7821cbde.woff2",
+    "static/media/logo.svg": "/tiktok/static/media/logo.ae19c5e071f7065fc7c947a8ab3fe969.svg",
+    "static/media/Following.svg": "/tiktok/static/media/Following.1ae06134905746025ec3c55197ecac3e.svg",
+    "static/media/Live.svg": "/tiktok/static/media/Live.b7757b038b811e039878def3137d3cb9.svg",
+    "static/media/Profile.svg": "/tiktok/static/media/Profile.127ae29da3e7583d2cd0f60a9b6afd71.svg",
+    "static/media/inbox.svg": "/tiktok/static/media/inbox.e3f740733379c4301f5ed567052fea45.svg",
+    "static/media/messages.svg": "/tiktok/static/media/messages.62e258b1aeb230632ab1c1be817dca9a.svg",
+    "static/media/trend.svg": "/tiktok/static/media/trend.8d97baa9fb1695ba07170704498b9cf6.svg",
+    "static/media/Home.svg": "/tiktok/static/media/Home.264bc8e61b034fc17507d94628d87714.svg",
+    "index.html": "/tiktok/index.html",
+    "static/media/Explore.svg": "/tiktok/static/media/Explore.54d87c48939570578281fdf700165a0b.svg",
+    "main.fde19faa.css.map": "/tiktok/static/css/main.fde19faa.css.map",
+    "main.94bd2a60.js.map": "/tiktok/static/js/main.94bd2a60.js.map",
+    "453.ed3810f9.chunk.js.map": "/tiktok/static/js/453.ed3810f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fde19faa.css",
+    "static/js/main.94bd2a60.js"
+  ]
+}
